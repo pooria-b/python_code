@@ -1,0 +1,7 @@
+from  IPython.display import clear_output
+!apt-get install axel
+clear_output()
+!axel -n # connections number # # your link here #
+clear_output()
+
+# !unzip -qx /content/glove.6B.zip
