@@ -1,3 +1,5 @@
+## step number one
+
 from IPython.display import clear_output
 !pip install --upgrade kaggle
 clear_output()
@@ -11,3 +13,6 @@ for fn in uploaded.keys():
   
 # Then move kaggle.json into the folder where the API expects to find it.
 !mkdir -p ~/.kaggle/ && mv kaggle.json ~/.kaggle/ && chmod 600 ~/.kaggle/kaggle.json
+
+## step number two
+coping API command
