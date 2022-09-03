@@ -1,0 +1,4 @@
+n = 100000000
+i = []
+while True:
+  i.append(n * 10**66)
