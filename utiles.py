@@ -63,3 +63,23 @@ def evaluate(model, valid_loader, loss_fn, num_classes):
       acc_valid(outputs, targets.int())
 
   return loss_valid.avg, acc_valid.compute()
+
+
+
+def diagnose_mv(df, mv_column):
+    cols = list(df.columns)
+    cols.remove(mv_column)
+    flags = df[mv_column].isna()
+    fig, ax = plt.subplots(len(cols), 3, 
+                           figsize=(len(cols)+3, len(cols)+3), 
+                           constrained_layout=True)
+    plt.rcParams['axes.grid'] = True
+    for i, col in enumerate(cols):
+        n1, bins, _ = ax[i, 0].hist(df[col])
+        ax[i, 0].set_title(f'{col} with MV')
+        #
+        n2, _, _ = ax[i, 1].hist(df[col][~flags], bins=bins)
+        ax[i, 1].set_title(f'{col} without MV')
+        #
+        ax[i, 2].bar(bins[:-1], np.abs(n2-n1), width=np.abs(bins[1]-bins[0]))
+        ax[i, 2].set_title(f'Difference')
